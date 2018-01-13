@@ -15,10 +15,10 @@ import (
 )
 
 var engine *gorm.DB
-var err error
 
 // Connect connect to the database
 func Connect() {
+	var err error
 	var dialString string
 	if viper.GetString("Database.Engine") == "sqlite3" {
 		dialString = viper.GetString("Database.Path")

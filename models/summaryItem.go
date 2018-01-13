@@ -23,6 +23,7 @@ func (item *SummaryItem) Create() error {
 // FindByStarter Find a record by start
 func (item *SummaryItem) FindByStarter() (exist bool) {
 	var num uint
+	var err error
 	err = engine.Model(new(SummaryItem)).Where(SummaryItem{Start: item.Start, UserID: item.UserID}).Count(&num).Error
 	if err != nil {
 		return
