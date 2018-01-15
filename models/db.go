@@ -45,8 +45,7 @@ func Connect() {
 }
 
 // Logger default logger
-type Logger struct {
-}
+type Logger struct{}
 
 func isPrintable(s string) bool {
 	for _, r := range s {

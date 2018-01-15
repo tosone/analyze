@@ -5,14 +5,20 @@ Target     = worklyzer
 
 UNAME_S    = $(shell uname -s)
 
-GOOS       = linux
-CC         = gcc
-Subfix     = linux
+GOOS       = windows
+CC         = "x86_64-w64-mingw32-gcc -fno-stack-protector -D_FORTIFY_SOURCE=0 -lssp"
+Subfix     = windows
 
 ifeq ($(UNAME_S),Darwin)
 	GOOS   = darwin
 	CC     = clang
 	Subfix = mac 
+endif
+
+ifeq ($(UNAME_S),Linux)
+	GOOS       = linux
+	CC         = gcc
+	Subfix     = linux
 endif
 
 build: clean
@@ -21,6 +27,9 @@ build: clean
 
 test: cleanTest
 	./release/${Target}-$(Subfix) --config=config.yaml service
+
+release:
+	xgo -v --targets=linux/amd64,linux/arm-5,linux/arm-6,linux/arm-7,darwin/amd64,windows/amd64 -ldflags "-s -w -X ${BuildStamp} -X ${GitHash} -X ${Version}" github.com/tosone/worklyzer
 
 authors:
 	echo "Authors\n=======\n\nProject's contributors:\n" > AUTHORS.md
