@@ -38,7 +38,7 @@ var serviceCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "f", "/etc/analyze/config.yaml", "config file")
+	RootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "f", "/etc/worklyzer/config.yaml", "config file")
 
 	cobra.OnInitialize(initConfig)
 
@@ -51,7 +51,7 @@ func initConfig() {
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
 	} else {
-		viper.SetConfigFile("/etc/analyze/config.yaml")
+		viper.SetConfigFile("/etc/worklyzer/config.yaml")
 	}
 	viper.AutomaticEnv()
 	if err := viper.ReadInConfig(); err != nil {

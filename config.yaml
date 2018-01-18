@@ -1,6 +1,6 @@
 Setting:
   Name: Worklyzer
-  Travel: 2 # 每隔八个小时，遍历所有的仓库更新至状态
+  Travel: 2 # 每隔 n 个小时，遍历所有的仓库更新至状态
 Web:
   Host: 127.0.0.1 # 监听地址
   Port: 8080 # 监听端口
